@@ -28,12 +28,10 @@ var Cashier = /** @class */ (function (_super) {
     Cashier.prototype.addOrder = function (order) {
         this.order = order;
     };
-    Cashier.prototype.calculateTotalPrice = function () {
-        var items = this.order.getItems();
-        for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
-            var item = items_1[_i];
-            this.totalPrice += item.getPrice();
-        }
+    Cashier.prototype.gettotalPrice = function () {
+        return this.totalPrice;
+    };
+    Cashier.prototype.calculateTotalPrice = function (customer) {
     };
     return Cashier;
 }(Staff_1.Staff));

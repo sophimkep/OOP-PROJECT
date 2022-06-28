@@ -27,6 +27,12 @@ var Chef = /** @class */ (function (_super) {
         _this.salary = salary;
         return _this;
     }
+    Chef.prototype.takeOrder = function (order) {
+        this.orders = order;
+    };
+    Chef.prototype.getOrders = function () {
+        return this.orders;
+    };
     return Chef;
 }(Staff_1.Staff));
 exports.Chef = Chef;

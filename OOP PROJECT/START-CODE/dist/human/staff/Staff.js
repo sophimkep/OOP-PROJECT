@@ -42,6 +42,7 @@ var Staff = /** @class */ (function (_super) {
     Staff.prototype.getCategory = function () {
         return this.category;
     };
+    Staff.prototype.getOrder = function () { };
     return Staff;
 }(Person_1.Person));
 exports.Staff = Staff;

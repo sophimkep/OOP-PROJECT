@@ -32,4 +32,5 @@ export class Staff extends Person {
   getCategory() {
     return this.category
   }
+  getOrder() {}
 }

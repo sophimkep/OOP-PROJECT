@@ -15,18 +15,27 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.Nurse = void 0;
+exports.Waiter = void 0;
+var Order_1 = require("../../order/Order");
 var Staff_1 = require("./Staff");
 /**
  * A nurse manage patient checks
  */
-var Nurse = /** @class */ (function (_super) {
-    __extends(Nurse, _super);
-    function Nurse(category, name, age, gender, salary) {
+var Waiter = /** @class */ (function (_super) {
+    __extends(Waiter, _super);
+    function Waiter(category, name, age, gender, salary) {
         var _this = _super.call(this, category, name, age, gender) || this;
         _this.salary = salary;
         return _this;
     }
-    return Nurse;
+    Waiter.prototype.createOrder = function (id, customer, customerOrder) {
+        var newOrder = new Order_1.Order(id, customer);
+        newOrder.addItem(customerOrder);
+        this.order = newOrder;
+    };
+    Waiter.prototype.getOrder = function () {
+        return this.order;
+    };
+    return Waiter;
 }(Staff_1.Staff));
-exports.Nurse = Nurse;
+exports.Waiter = Waiter;

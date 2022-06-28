@@ -5,16 +5,16 @@ var Order = /** @class */ (function () {
     function Order(orderID, customer) {
         this.orderID = orderID;
         this.customer = customer;
-        this.itemOrders = [];
+        this.totalPrice = 0;
     }
-    Order.prototype.addItemToOrder = function (item) {
-        this.itemOrders.push(item);
-    };
-    Order.prototype.getItems = function () {
-        return this.itemOrders;
-    };
     Order.prototype.getCustomer = function () {
         return this.customer;
+    };
+    Order.prototype.addItem = function (itemOrder) {
+        this.itemOrders = itemOrder;
+    };
+    Order.prototype.getItemOrder = function () {
+        return this.itemOrders;
     };
     return Order;
 }());

@@ -1,12 +1,15 @@
 import { Customer } from "./human/customer/Customer";
-import { Drink, DrinkCategory } from "./kitchen/Item/Drink";
-import { Food, FoodCategory } from "./kitchen/Item/Food";
-import { Order } from "./order/Order";
+import { Waiter } from "./human/staff/Waiter";
+import { Drink, DrinkCategory } from "./menu/Item/Drink";
+import { Food, FoodCategory } from "./menu/Item/Food";
 import { Restaurant } from "./Restaurant";
 import { Chair } from "./rooms/Chair";
 import { Room } from "./rooms/Room";
 import { Table } from "./rooms/Table";
 import { Gender } from "./human/Person";
+import { Chef } from "./human/staff/Chef";
+import { Staff, StaffCategory } from "./human/staff/Staff";
+import { ItemOrder } from "./menu/Item/ItemOrder";
 
 let hakRestaurant = new Restaurant('Hak Dilicious', 'st.371, Phnom Penh');
 
@@ -43,16 +46,17 @@ room2.addTable(table1, table2);
 hakRestaurant.rooms.addRoom(room1);
 hakRestaurant.rooms.addRoom(room2);
 
-// console.log(hakRestaurant.rooms.getNumberOfRooms());
 
-let customer = new Customer('sophim', 21, Gender.MALE);
-let order1 = new Order(1, customer);
-order1.addItemToOrder(spaghetti);
+let ngaCus = new Customer('Nga', 22, Gender.MALE);
 
-hakRestaurant.order.addOrder(order1);
+let customerOrder = new ItemOrder();
+customerOrder.addItemToOrder(spaghetti, burger, green_tea);
+let waiter = new Waiter(StaffCategory.WAITER, 'Hak', 22,Gender.MALE, 20000);
 
-console.log(hakRestaurant.order);
-let or = hakRestaurant.order.getOrders();
-
-
-
+// waiter.createOrder(1, ngaCus, customerOrder);
+// console.log(customerOrder.getItems());
+let sophimChef = new Chef(StaffCategory.CHEF, 'Sophim', 30, Gender.MALE, 20000);
+sophimChef.takeOrder(waiter.getOrder());
+hakRestaurant.orders.addOrder(sophimChef.getOrders());
+// console.log(hakRestaurant.orders);
+console.log(waiter.getOrder());
