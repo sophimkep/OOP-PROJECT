@@ -24,13 +24,16 @@ var Cashier = /** @class */ (function (_super) {
         _this.salary = salary;
         return _this;
     }
-    Cashier.prototype.receipt = function (order) {
+    Cashier.addOrder = function (newOrder) {
+        Cashier.order = newOrder;
+    };
+    Cashier.prototype.receipt = function () {
         var total = 0;
         var list = "";
-        var itemOrder = order.getItemOrder();
-        list += "Ord# " + order.orderID + "\n";
-        list += "roomid# " + order.roomId + "\n";
-        list += "TableId#: " + order.tableID + "\n";
+        var itemOrder = Cashier.order.getItemOrder();
+        list += "Ord# " + Cashier.order.orderID + "\n";
+        list += "roomid# " + Cashier.order.roomId + "\n";
+        list += "TableId#: " + Cashier.order.tableID + "\n";
         var items = itemOrder.getItems();
         for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
             var item = items_1[_i];
@@ -38,6 +41,12 @@ var Cashier = /** @class */ (function (_super) {
             list += item.getItemTitle() + ": " + item.getPrice() + "\n";
         }
         return list + "Total: " + total;
+    };
+    Cashier.prototype.getOrder = function () {
+        return Cashier.order;
+    };
+    Cashier.prototype.updatePaymentStatus = function (status) {
+        Cashier.order.updatePaymentStatus(status);
     };
     return Cashier;
 }(Staff_1.Staff));

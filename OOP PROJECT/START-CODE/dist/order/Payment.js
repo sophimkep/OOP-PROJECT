@@ -9,9 +9,6 @@ var PaymentStatus;
 var Payment = /** @class */ (function () {
     function Payment() {
     }
-    Payment.prototype.updatePaymentStatus = function (status) {
-        this.order.updatePaymentStatus(status);
-    };
     return Payment;
 }());
 exports.Payment = Payment;

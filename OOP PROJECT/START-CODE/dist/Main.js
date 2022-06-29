@@ -5,7 +5,6 @@ var Waiter_1 = require("./human/staff/Waiter");
 var Drink_1 = require("./menu/Item/Drink");
 var Food_1 = require("./menu/Item/Food");
 var Restaurant_1 = require("./Restaurant");
-var Chair_1 = require("./rooms/Chair");
 var Room_1 = require("./rooms/Room");
 var Table_1 = require("./rooms/Table");
 var Person_1 = require("./human/Person");
@@ -14,65 +13,58 @@ var Staff_1 = require("./human/staff/Staff");
 var ItemOrder_1 = require("./menu/Item/ItemOrder");
 var Cashier_1 = require("./human/staff/Cashier");
 var Order_1 = require("./order/Order");
+var Payment_1 = require("./order/Payment");
+var Item_1 = require("./menu/Item/Item");
+// Create a new restaurant
 var hakRestaurant = new Restaurant_1.Restaurant('Hak Dilicious', 'st.371, Phnom Penh');
-var spaghetti = new Food_1.Food('Spaghetti balognes', 20000, Food_1.FoodCategory.SPAGHETTI);
-var burger = new Food_1.Food('Chiken', 24000, Food_1.FoodCategory.BURGER);
-var sanwich = new Food_1.Food('Beff Sanwich', 28000, Food_1.FoodCategory.SANWICH);
-var coca = new Drink_1.Drink('Coke', 4000, Drink_1.DrinkCategory.SOFTDRINK);
-var angkor_Beer = new Drink_1.Drink('Angkor Beer', 4000, Drink_1.DrinkCategory.BEER);
-var hot_Latte = new Drink_1.Drink('Hot Latte', 4000, Drink_1.DrinkCategory.COFFEE);
-var green_tea = new Drink_1.Drink('Green Tea', 4000, Drink_1.DrinkCategory.TEA);
+// Create Food
+var spaghetti = new Food_1.Food('Spaghetti balognes', 20000, Item_1.ItemType.FOOD);
+var burger = new Food_1.Food('Chiken', 24000, Item_1.ItemType.FOOD);
+var sanwich = new Food_1.Food('Beff Sanwich', 28000, Item_1.ItemType.FOOD);
+// Create Drink
+var coca = new Drink_1.Drink('Coke', 4000, Item_1.ItemType.DRINK);
+var angkor_Beer = new Drink_1.Drink('Angkor Beer', 4000, Item_1.ItemType.DRINK);
+var hot_Latte = new Drink_1.Drink('Hot Latte', 4000, Item_1.ItemType.DRINK);
+var green_tea = new Drink_1.Drink('Green Tea', 4000, Item_1.ItemType.DRINK);
+// Add Food and Drink to MenuItem
 hakRestaurant.menu.addItem(spaghetti, burger, sanwich, coca, angkor_Beer, hot_Latte, green_tea);
+// Create Customer
 var ngaCus = new Customer_1.Customer('Nga', 22, Person_1.Gender.MALE);
-var chair1 = new Chair_1.Chair();
-var chair2 = new Chair_1.Chair();
-var chair3 = new Chair_1.Chair();
-var chair4 = new Chair_1.Chair();
-var chair5 = new Chair_1.Chair();
-var chair6 = new Chair_1.Chair();
-var chair7 = new Chair_1.Chair();
-var chair8 = new Chair_1.Chair();
-chair1.setCustomer(ngaCus);
-// chair2.setCustomer(ngaCus);
-console.log(chair2.setCustomer(ngaCus));
-// chair4.setCustomer(ngaCus);
-var table1 = new Table_1.Table(1);
-var table2 = new Table_1.Table(2);
-var table3 = new Table_1.Table(3);
-var table4 = new Table_1.Table(4);
-var table5 = new Table_1.Table(1);
-var table6 = new Table_1.Table(2);
-var table7 = new Table_1.Table(3);
-var table8 = new Table_1.Table(4);
-table1.addChair(chair1, chair2, chair3, chair4);
-table2.addChair(chair1, chair2, chair3, chair4);
-table3.addChair(chair1, chair2, chair3, chair4);
-table4.addChair(chair1, chair2, chair3, chair4);
-table5.addChair(chair5, chair6, chair7, chair8);
-table6.addChair(chair5, chair6, chair7, chair8);
-table7.addChair(chair5, chair6, chair7, chair8);
-table8.addChair(chair5, chair6, chair7, chair8);
-table1.addCustomerFromEachChairToTable();
-console.log(table1.getNumberCustomer());
-// console.log(table1.getNumberOfChairs());
+var sok = new Customer_1.Customer('Shok', 22, Person_1.Gender.MALE);
+// Create a Cashier
+var sarathCashier = new Cashier_1.Cashier(Staff_1.StaffCategory.CASHIER, 'Sarath', 30, Person_1.Gender.MALE, 20000);
+// Create a waiter
+var waiter = new Waiter_1.Waiter(Staff_1.StaffCategory.WAITER, 'Hak', 22, Person_1.Gender.MALE, 20000);
+// Create a Chef
+var sophimChef = new Chef_1.Chef(Staff_1.StaffCategory.CHEF, 'Sophim', 30, Person_1.Gender.MALE, 20000);
+// Create 4 Tables
+var table1 = new Table_1.Table(1, 4);
+var table2 = new Table_1.Table(2, 2);
+var table3 = new Table_1.Table(3, 4);
+var table4 = new Table_1.Table(4, 2);
+// add customers
+table1.addCustomer(ngaCus);
+console.log(table1.addCustomer(ngaCus));
+// table2.addCustomer(ngaCus); 
+// Create 2 rooms
 var room1 = new Room_1.Room(1);
 var room2 = new Room_1.Room(2);
-room1.addTable(table5, table6, table7, table8);
-room2.addTable(table1, table2, table3, table4);
+// Add 2 tables to one room
+room1.addTable(table1, table2);
+room2.addTable(table3, table4);
+// Add 2 rooms into restaurant
 hakRestaurant.rooms.addRoom(room1);
 hakRestaurant.rooms.addRoom(room2);
+// Waiter create order
 var customerOrder = new ItemOrder_1.ItemOrder();
 customerOrder.addItemToOrder(spaghetti, burger, green_tea);
-var waiter = new Waiter_1.Waiter(Staff_1.StaffCategory.WAITER, 'Hak', 22, Person_1.Gender.MALE, 20000);
 waiter.createOrder(1, ngaCus, customerOrder, 1, 1);
-var sophimChef = new Chef_1.Chef(Staff_1.StaffCategory.CHEF, 'Sophim', 30, Person_1.Gender.MALE, 20000);
-sophimChef.takeOrder(waiter.getOrder());
+// Chef take order frome waiter
+sophimChef.takeOrder(sarathCashier.getOrder());
+// Chef updateOrderStatus
 sophimChef.updateOrderStatus(Order_1.OrderStatus.INPROGRESS);
-sophimChef.isDone();
-hakRestaurant.orders.addOrder(waiter.getOrder());
-// ngaCus.payMent(PaymentStatus.PAID);
-// console.log(hakRestaurant.orders);
-var sarathCashier = new Cashier_1.Cashier(Staff_1.StaffCategory.CASHIER, 'Sarath', 30, Person_1.Gender.MALE, 20000);
-// console.log(sarathCashier.receipt(waiter.getOrder()));
-// console.log(hakRestaurant.rooms.findFreeRoom());
-// console.log(hakRestaurant.rooms);
+//add order to restaurant
+hakRestaurant.orders.addOrder(sarathCashier.getOrder());
+sarathCashier.updatePaymentStatus(Payment_1.PaymentStatus.PAID);
+// hakRestaurant.orders.removeOrder();
+console.log(hakRestaurant.rooms.findFreeRoom());

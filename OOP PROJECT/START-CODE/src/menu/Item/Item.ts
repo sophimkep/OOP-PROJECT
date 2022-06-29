@@ -1,11 +1,11 @@
 import { DrinkCategory } from "./Drink";
-import { FoodCategory } from "./Food";
 
+export enum ItemType {
+  DRINK = 'Drink',
+  FOOD = 'Food',
+}
 export abstract class Item{
-    getItems(): Item {
-      throw new Error("Method not implemented.");
-    }
-    constructor(protected title: string,protected price: number,protected category: DrinkCategory | FoodCategory){}
+    constructor(protected title: string,protected price: number,protected category: ItemType) {}
 
     updatePrice(price: number){
 
@@ -14,6 +14,7 @@ export abstract class Item{
     getPrice(){
         return this.price;
     }
+
     getItemTitle(){
       return this.title;
     }

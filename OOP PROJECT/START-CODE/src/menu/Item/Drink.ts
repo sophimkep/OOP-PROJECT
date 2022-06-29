@@ -1,4 +1,4 @@
-import { Item } from "./Item";
+import { Item, ItemType } from "./Item";
 
 export enum DrinkCategory{
     SOFTDRINK = 'Softdrink',
@@ -7,7 +7,7 @@ export enum DrinkCategory{
     TEA = 'Tea',
 }
 export class Drink extends Item{
-    constructor(title: string,price: number, category: DrinkCategory){
+    constructor(title: string,price: number, category: ItemType){
         super(title,price, category)
     }
 

@@ -11,19 +11,19 @@ export class RoomManager {
     return this.rooms.push(room);
   }
 
-  // /** Find a room with a free bed
-  //  * @return the first room available with a free bed
+  // /** Find a room with a free table
+  //  * @return the all rooms are available with a free bed
   //  */
 
-  findFreeRoom(): Room[] | undefined{
-    var freeRoom: Room[] = [];
+  findFreeRoom(){
+    let freeRoom: Room[] = [];
     for(let room of this.rooms){
-      if(room.isTableFree()){
+      if (room.findFreeTable()){
         freeRoom.push(room);
       }
     }
-    if (freeRoom.length > 0){
-      return freeRoom;
+    if (freeRoom.length>0){
+        return freeRoom;
     }else{
       return undefined;
     }

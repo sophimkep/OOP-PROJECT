@@ -27,10 +27,10 @@ var Room = /** @class */ (function () {
             return "Cannot add table! Max 4";
         }
     };
-    Room.prototype.isTableFree = function () {
+    Room.prototype.findFreeTable = function () {
         for (var _i = 0, _a = this.tables; _i < _a.length; _i++) {
             var table = _a[_i];
-            if (table.findFreeChair()) {
+            if (table.getCustomer().length <= 0) {
                 return true;
             }
         }

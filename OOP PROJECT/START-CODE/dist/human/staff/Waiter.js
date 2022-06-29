@@ -17,6 +17,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.Waiter = void 0;
 var Order_1 = require("../../order/Order");
+var Cashier_1 = require("./Cashier");
 var Staff_1 = require("./Staff");
 /**
  * A nurse manage patient checks
@@ -31,10 +32,7 @@ var Waiter = /** @class */ (function (_super) {
     Waiter.prototype.createOrder = function (id, customer, customerOrder, roomId, tableId) {
         var newOrder = new Order_1.Order(id, customer, roomId, tableId);
         newOrder.addItem(customerOrder);
-        this.order = newOrder;
-    };
-    Waiter.prototype.getOrder = function () {
-        return this.order;
+        Cashier_1.Cashier.addOrder(newOrder);
     };
     return Waiter;
 }(Staff_1.Staff));

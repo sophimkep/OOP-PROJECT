@@ -1,12 +1,7 @@
-import { Item } from "./Item";
+import { Item, ItemType } from "./Item";
 
-export enum FoodCategory{
-    SPAGHETTI = 'Spaghetti',
-    BURGER = 'Burger',
-    SANWICH = 'SanwICH',
-}
 export class Food extends Item {
-    constructor(title: string,price:number, category: FoodCategory){
+    constructor(title: string, price:number, category: ItemType){
         super(title,price, category)
     }
 

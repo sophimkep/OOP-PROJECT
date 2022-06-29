@@ -1,50 +1,47 @@
 
 import { Customer } from "../human/customer/Customer";
-import { Chair } from "./Chair";
-import { ChairStatus } from "./ChairStatus";
+import { TableStatus } from "./TableStatus";
 
 export class Table {
-  private status = ChairStatus.GOOD; // by default
-  public chairs: Chair[] = [];
+  private status = TableStatus.GOOD; // by default
   private customers: Customer[] = [];
+  constructor(private id: number, private numberOfChair: number) {}
 
-
-  constructor(private id: number) {}
-
-  getNumberOfChairs() {
-    return this.chairs.length;
-  }
-
-  getChairs() {
-    return this.chairs;
-  }
-
-  addChair(...chairs: Chair[]) {
-    if (this.chairs.length < 5){
-      this.chairs = this.chairs.concat(chairs);
+  addCustomer(customer: Customer): string {
+    let message: string = '';
+    if (this.customers.length < this.numberOfChair){
+      if (this.isCustomerExists(customer)){
+        this.customers.push(customer);
+      }else{
+        message = "Customer already added";
+      }
     }else{
-      return "Cannot add chair! Max 4";
+      message = "Cannot add more customers";
     }
+    return message;
   }
 
-  findFreeChair() {
-    for(let chair of this.chairs){
-      if (!chair.hasCustomer()){
+  isCustomerExists(customer: Customer){
+    for (let i = 0; i < this.customers.length; i++){
+      if (this.customers[i].isEqual(customer)){
+        return false;
+      }else{
         return true;
       }
     }
-    return false;
   }
 
-  addCustomerToChairs(customer: Customer){
-    for (let i=0;i<this.chairs.length;i++){
-      if (this.chairs[i].getCustomer()?.isEqual(customer)){
-        
-      }
-    }
+  getCustomer() {
+    return this.customers;
+  }
+  getNumberOfChair() {
+    return this.numberOfChair;
   }
 
-  getNumberCustomer() {
-    return this.customers.length;
+  removeCustomer(){
+    this.customers = [];
   }
+
+
+
 }

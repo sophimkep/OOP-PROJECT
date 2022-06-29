@@ -5,10 +5,5 @@ export enum PaymentStatus {
     UNPAID = 'Unpaid',
 }
 export class Payment{
-    private order: Order;
-
-
-    updatePaymentStatus(status: PaymentStatus){
-        this.order.updatePaymentStatus(status);
-      }
+    
 }

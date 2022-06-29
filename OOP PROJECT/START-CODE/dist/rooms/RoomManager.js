@@ -18,7 +18,7 @@ var RoomManager = /** @class */ (function () {
         var freeRoom = [];
         for (var _i = 0, _a = this.rooms; _i < _a.length; _i++) {
             var room = _a[_i];
-            if (room.isTableFree()) {
+            if (room.findFreeTable()) {
                 freeRoom.push(room);
             }
         }

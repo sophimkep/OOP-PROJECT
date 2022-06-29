@@ -9,6 +9,7 @@ export enum  OrderStatus{
     TODO = 'Todo',
     INPROGRESS = 'Inprogress',
     DONE = 'Done',
+    CANCEL = 'Cancel',
 }
 export class Order {
     private itemOrders: ItemOrder;
@@ -34,6 +35,24 @@ export class Order {
 
     updatePaymentStatus(status: PaymentStatus){
         this.paymentStatus = status;
+    }
+
+    getStatus(){
+        return this.orderStatus;
+    }
+
+    isEqual(other: Order){
+        if(this.orderID == other.orderID && 
+            this.orderStatus == other.orderStatus && 
+            this.roomId == other.roomId && this.tableID == other.tableID){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    getPaymentStatus(){
+        return this.paymentStatus
     }
 
 }

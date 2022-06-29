@@ -15,14 +15,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.Food = exports.FoodCategory = void 0;
+exports.Food = void 0;
 var Item_1 = require("./Item");
-var FoodCategory;
-(function (FoodCategory) {
-    FoodCategory["SPAGHETTI"] = "Spaghetti";
-    FoodCategory["BURGER"] = "Burger";
-    FoodCategory["SANWICH"] = "SanwICH";
-})(FoodCategory = exports.FoodCategory || (exports.FoodCategory = {}));
 var Food = /** @class */ (function (_super) {
     __extends(Food, _super);
     function Food(title, price, category) {

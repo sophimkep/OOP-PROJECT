@@ -7,6 +7,7 @@ var OrderStatus;
     OrderStatus["TODO"] = "Todo";
     OrderStatus["INPROGRESS"] = "Inprogress";
     OrderStatus["DONE"] = "Done";
+    OrderStatus["CANCEL"] = "Cancel";
 })(OrderStatus = exports.OrderStatus || (exports.OrderStatus = {}));
 var Order = /** @class */ (function () {
     function Order(orderID, customer, roomId, tableID) {
@@ -31,6 +32,22 @@ var Order = /** @class */ (function () {
     };
     Order.prototype.updatePaymentStatus = function (status) {
         this.paymentStatus = status;
+    };
+    Order.prototype.getStatus = function () {
+        return this.orderStatus;
+    };
+    Order.prototype.isEqual = function (other) {
+        if (this.orderID == other.orderID &&
+            this.orderStatus == other.orderStatus &&
+            this.roomId == other.roomId && this.tableID == other.tableID) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    Order.prototype.getPaymentStatus = function () {
+        return this.paymentStatus;
     };
     return Order;
 }());

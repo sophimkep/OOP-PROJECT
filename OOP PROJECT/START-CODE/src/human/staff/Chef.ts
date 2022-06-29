@@ -6,21 +6,25 @@ import { Staff, StaffCategory } from "./Staff";
  * A doctor is a staff with a mediacal speciality
  */
 export class Chef extends Staff {
-  private order: Order;
-
-  constructor(category: StaffCategory, name: string, age: number, gender: Gender, protected salary: number) {
+  static order: Order;
+  protected salary: number;
+  constructor(category: StaffCategory, name: string, age: number, gender: Gender) {
     super(category, name, age, gender);
   }
 
   takeOrder(order: Order){
-    this.order = order;
+    Chef.order = order;
   }
 
   updateOrderStatus(status: OrderStatus){
-    this.order.updateStatus(status);
+    Chef.order.updateStatus(status);
   }
 
   isDone(){
-    this.order.updateStatus(OrderStatus.DONE)
+    Chef.order.updateStatus(OrderStatus.DONE)
+  }
+
+  static cancelOrder(status: OrderStatus) {
+    Chef.order.updateStatus(status);
   }
 }

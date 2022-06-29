@@ -29,13 +29,16 @@ var Chef = /** @class */ (function (_super) {
         return _this;
     }
     Chef.prototype.takeOrder = function (order) {
-        this.order = order;
+        Chef.order = order;
     };
     Chef.prototype.updateOrderStatus = function (status) {
-        this.order.updateStatus(status);
+        Chef.order.updateStatus(status);
     };
     Chef.prototype.isDone = function () {
-        this.order.updateStatus(Order_1.OrderStatus.DONE);
+        Chef.order.updateStatus(Order_1.OrderStatus.DONE);
+    };
+    Chef.cancelOrder = function (status) {
+        Chef.order.updateStatus(status);
     };
     return Chef;
 }(Staff_1.Staff));

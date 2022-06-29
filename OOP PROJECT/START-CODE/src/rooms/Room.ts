@@ -24,9 +24,9 @@ export class Room {
     }
   }
 
-  isTableFree() {
+  findFreeTable(){
     for (let table of this.tables){
-      if (table.findFreeChair()){
+      if (table.getCustomer().length<=0){
         return true;
       }
     }

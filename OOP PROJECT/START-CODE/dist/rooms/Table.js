@@ -1,52 +1,47 @@
 "use strict";
 exports.__esModule = true;
 exports.Table = void 0;
-var ChairStatus_1 = require("./ChairStatus");
+var TableStatus_1 = require("./TableStatus");
 var Table = /** @class */ (function () {
-    function Table(id) {
+    function Table(id, numberOfChair) {
         this.id = id;
-        this.status = ChairStatus_1.ChairStatus.GOOD; // by default
-        this.chairs = [];
+        this.numberOfChair = numberOfChair;
+        this.status = TableStatus_1.TableStatus.GOOD; // by default
         this.customers = [];
     }
-    Table.prototype.getNumberOfChairs = function () {
-        return this.chairs.length;
-    };
-    Table.prototype.getChairs = function () {
-        return this.chairs;
-    };
-    Table.prototype.addChair = function () {
-        var chairs = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            chairs[_i] = arguments[_i];
-        }
-        if (this.chairs.length < 5) {
-            this.chairs = this.chairs.concat(chairs);
+    Table.prototype.addCustomer = function (customer) {
+        var message = '';
+        if (this.customers.length < this.numberOfChair) {
+            if (this.isAreadyAddCustomer(customer)) {
+                this.customers.push(customer);
+            }
+            else {
+                message = "Customer already added";
+            }
         }
         else {
-            return "Cannot add chair! Max 4";
+            message = "Cannot add more customers";
         }
+        return message;
     };
-    Table.prototype.findFreeChair = function () {
-        for (var _i = 0, _a = this.chairs; _i < _a.length; _i++) {
-            var chair = _a[_i];
-            if (!chair.hasCustomer()) {
+    Table.prototype.isAreadyAddCustomer = function (customer) {
+        for (var i = 0; i < this.customers.length; i++) {
+            if (this.customers[i].isEqual(customer)) {
+                return false;
+            }
+            else {
                 return true;
             }
         }
-        return false;
     };
-    Table.prototype.addCustomerFromEachChairToTable = function () {
-        var customer;
-        for (var i = 0; i < this.chairs.length; i++) {
-            if (this.chairs[i].hasCustomer()) {
-                customer = this.chairs[i].getCustomer();
-                this.customers.push(customer);
-            }
-        }
+    Table.prototype.getCustomer = function () {
+        return this.customers;
     };
-    Table.prototype.getNumberCustomer = function () {
-        return this.customers.length;
+    Table.prototype.getNumberOfChair = function () {
+        return this.numberOfChair;
+    };
+    Table.prototype.removeCustomer = function () {
+        this.customers = [];
     };
     return Table;
 }());
