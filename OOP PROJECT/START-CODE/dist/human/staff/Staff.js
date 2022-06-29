@@ -21,6 +21,7 @@ var StaffCategory;
 (function (StaffCategory) {
     StaffCategory["CHEF"] = "Chef";
     StaffCategory["WAITER"] = "Waiter";
+    StaffCategory["CASHIER"] = "Cashier";
 })(StaffCategory = exports.StaffCategory || (exports.StaffCategory = {}));
 /**
  * A staff is a personn of the hospital with a salary

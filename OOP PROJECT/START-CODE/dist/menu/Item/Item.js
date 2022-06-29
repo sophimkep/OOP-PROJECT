@@ -15,6 +15,9 @@ var Item = /** @class */ (function () {
     Item.prototype.getPrice = function () {
         return this.price;
     };
+    Item.prototype.getItemTitle = function () {
+        return this.title;
+    };
     return Item;
 }());
 exports.Item = Item;

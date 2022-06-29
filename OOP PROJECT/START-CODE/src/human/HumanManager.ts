@@ -10,7 +10,7 @@ export class HumanManager {
   //   this.customers.push(customer);
   // }
 
-  getdcustomers() {
+  getcustomers() {
     return this.customers;
   }
 

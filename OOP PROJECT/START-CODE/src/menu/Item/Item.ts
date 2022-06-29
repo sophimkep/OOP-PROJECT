@@ -14,4 +14,7 @@ export abstract class Item{
     getPrice(){
         return this.price;
     }
+    getItemTitle(){
+      return this.title;
+    }
 }

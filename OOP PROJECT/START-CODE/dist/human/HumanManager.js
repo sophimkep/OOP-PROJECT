@@ -9,7 +9,7 @@ var HumanManager = /** @class */ (function () {
     // adddCustomer(customer: Customer){
     //   this.customers.push(customer);
     // }
-    HumanManager.prototype.getdcustomers = function () {
+    HumanManager.prototype.getcustomers = function () {
         return this.customers;
     };
     HumanManager.prototype.addStaff = function (staff) {

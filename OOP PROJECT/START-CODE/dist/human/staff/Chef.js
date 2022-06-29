@@ -16,6 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.Chef = void 0;
+var Order_1 = require("../../order/Order");
 var Staff_1 = require("./Staff");
 /**
  * A doctor is a staff with a mediacal speciality
@@ -28,10 +29,13 @@ var Chef = /** @class */ (function (_super) {
         return _this;
     }
     Chef.prototype.takeOrder = function (order) {
-        this.orders = order;
+        this.order = order;
     };
-    Chef.prototype.getOrders = function () {
-        return this.orders;
+    Chef.prototype.updateOrderStatus = function (status) {
+        this.order.updateStatus(status);
+    };
+    Chef.prototype.isDone = function () {
+        this.order.updateStatus(Order_1.OrderStatus.DONE);
     };
     return Chef;
 }(Staff_1.Staff));

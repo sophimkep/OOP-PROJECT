@@ -22,16 +22,22 @@ var Cashier = /** @class */ (function (_super) {
     function Cashier(category, name, age, gender, salary) {
         var _this = _super.call(this, category, name, age, gender) || this;
         _this.salary = salary;
-        _this.totalPrice = 0;
         return _this;
     }
-    Cashier.prototype.addOrder = function (order) {
-        this.order = order;
-    };
-    Cashier.prototype.gettotalPrice = function () {
-        return this.totalPrice;
-    };
-    Cashier.prototype.calculateTotalPrice = function (customer) {
+    Cashier.prototype.receipt = function (order) {
+        var total = 0;
+        var list = "";
+        var itemOrder = order.getItemOrder();
+        list += "Ord# " + order.orderID + "\n";
+        list += "roomid# " + order.roomId + "\n";
+        list += "TableId#: " + order.tableID + "\n";
+        var items = itemOrder.getItems();
+        for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+            var item = items_1[_i];
+            total += item.getPrice();
+            list += item.getItemTitle() + ": " + item.getPrice() + "\n";
+        }
+        return list + "Total: " + total;
     };
     return Cashier;
 }(Staff_1.Staff));

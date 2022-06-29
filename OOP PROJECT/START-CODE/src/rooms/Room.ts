@@ -17,6 +17,19 @@ export class Room {
   }
 
   addTable(...table: Table[]){
-    this.tables = this.tables.concat(table);
+    if (this.tables.length < 5){
+      this.tables = this.tables.concat(table);
+    }else{
+      return "Cannot add table! Max 4";
+    }
+  }
+
+  isTableFree() {
+    for (let table of this.tables){
+      if (table.findFreeChair()){
+        return true;
+      }
+    }
+    return false;
   }
 }

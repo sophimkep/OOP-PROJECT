@@ -8,8 +8,14 @@ var Chair = /** @class */ (function () {
         this.customer = undefined; // not customer in chair
     }
     // CHAIR CUSTOMER ----------------------------------------------
-    Chair.prototype.setCustomer = function (customer) {
-        this.customer = customer;
+    Chair.prototype.setCustomer = function (newcustomer) {
+        var _a;
+        if (!((_a = this.customer) === null || _a === void 0 ? void 0 : _a.isEqual(newcustomer))) {
+            this.customer = newcustomer;
+        }
+        else {
+            return "Customer already exists";
+        }
     };
     Chair.prototype.hasCustomer = function () {
         return this.customer !== undefined;

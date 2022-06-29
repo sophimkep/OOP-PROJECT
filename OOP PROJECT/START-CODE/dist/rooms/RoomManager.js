@@ -4,30 +4,30 @@ exports.RoomManager = void 0;
 var RoomManager = /** @class */ (function () {
     function RoomManager() {
         this.rooms = [];
-        // /** Find a room with a free bed
-        //  * @return the first room available with a free bed
-        //  */
-        // findFreeRoom(): Room | undefined {
-        //  let result:any;
-        //  let freeRoom: Room[] = [];
-        //   for(let room of this.rooms){
-        //     for(let table of room.addTable()){
-        //       if(table.hasPatient()){
-        //         result='undefined';
-        //       }else{
-        //         freeRoom.push(room);
-        //         result = freeRoom;
-        //       }
-        //     };
-        //   };
-        //   return result;
-        // }
     }
     RoomManager.prototype.getNumberOfRooms = function () {
         return this.rooms.length;
     };
     RoomManager.prototype.addRoom = function (room) {
         return this.rooms.push(room);
+    };
+    // /** Find a room with a free bed
+    //  * @return the first room available with a free bed
+    //  */
+    RoomManager.prototype.findFreeRoom = function () {
+        var freeRoom = [];
+        for (var _i = 0, _a = this.rooms; _i < _a.length; _i++) {
+            var room = _a[_i];
+            if (room.isTableFree()) {
+                freeRoom.push(room);
+            }
+        }
+        if (freeRoom.length > 0) {
+            return freeRoom;
+        }
+        else {
+            return undefined;
+        }
     };
     return RoomManager;
 }());

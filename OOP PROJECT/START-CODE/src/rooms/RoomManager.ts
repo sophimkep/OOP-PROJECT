@@ -14,25 +14,18 @@ export class RoomManager {
   // /** Find a room with a free bed
   //  * @return the first room available with a free bed
   //  */
-  // findFreeRoom(): Room | undefined {
-  //  let result:any;
-  //  let freeRoom: Room[] = [];
-  //   for(let room of this.rooms){
-  //     for(let table of room.addTable()){
-  //       if(table.hasPatient()){
-  //         result='undefined';
-  //       }else{
 
-  //         freeRoom.push(room);
-  //         result = freeRoom;
-  //       }
-
-  //     };
-  //   };
-  //   return result;
-
-  // }
-
-
-
+  findFreeRoom(): Room[] | undefined{
+    var freeRoom: Room[] = [];
+    for(let room of this.rooms){
+      if(room.isTableFree()){
+        freeRoom.push(room);
+      }
+    }
+    if (freeRoom.length > 0){
+      return freeRoom;
+    }else{
+      return undefined;
+    }
+  }
 }

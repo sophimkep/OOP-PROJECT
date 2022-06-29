@@ -6,11 +6,11 @@ export class Chair {
   private customer?: Customer = undefined; // not customer in chair
 
   // CHAIR CUSTOMER ----------------------------------------------
-  setCustomer(customer: Customer) {
-    this.customer = customer;
+  setCustomer(newcustomer: Customer) {
+    this.customer = newcustomer;
   }
 
-  hasCustomer() {
+  hasCustomer(){
     return this.customer !== undefined;
   }
 
@@ -26,4 +26,6 @@ export class Chair {
   setStatus(newStatus: ChairStatus) {
     this.status = newStatus;
   }
+
+  
 }

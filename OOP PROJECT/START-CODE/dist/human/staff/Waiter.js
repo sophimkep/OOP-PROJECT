@@ -28,8 +28,8 @@ var Waiter = /** @class */ (function (_super) {
         _this.salary = salary;
         return _this;
     }
-    Waiter.prototype.createOrder = function (id, customer, customerOrder) {
-        var newOrder = new Order_1.Order(id, customer);
+    Waiter.prototype.createOrder = function (id, customer, customerOrder, roomId, tableId) {
+        var newOrder = new Order_1.Order(id, customer, roomId, tableId);
         newOrder.addItem(customerOrder);
         this.order = newOrder;
     };

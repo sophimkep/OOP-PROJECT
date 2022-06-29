@@ -25,6 +25,15 @@ var Customer = /** @class */ (function (_super) {
     function Customer(name, age, gender) {
         return _super.call(this, name, age, gender) || this;
     }
+    Customer.prototype.payMent = function (status) {
+        this.payment.updatePaymentStatus(status);
+    };
+    Customer.prototype.isEqual = function (other) {
+        if (this.name === other.name && this.age === other.age && this.gender === other.gender) {
+            return true;
+        }
+        return false;
+    };
     return Customer;
 }(Person_1.Person));
 exports.Customer = Customer;

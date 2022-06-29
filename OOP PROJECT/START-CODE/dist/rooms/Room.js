@@ -20,7 +20,21 @@ var Room = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             table[_i] = arguments[_i];
         }
-        this.tables = this.tables.concat(table);
+        if (this.tables.length < 5) {
+            this.tables = this.tables.concat(table);
+        }
+        else {
+            return "Cannot add table! Max 4";
+        }
+    };
+    Room.prototype.isTableFree = function () {
+        for (var _i = 0, _a = this.tables; _i < _a.length; _i++) {
+            var table = _a[_i];
+            if (table.findFreeChair()) {
+                return true;
+            }
+        }
+        return false;
     };
     return Room;
 }());

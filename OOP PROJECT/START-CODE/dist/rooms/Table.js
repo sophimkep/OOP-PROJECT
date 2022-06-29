@@ -7,6 +7,7 @@ var Table = /** @class */ (function () {
         this.id = id;
         this.status = ChairStatus_1.ChairStatus.GOOD; // by default
         this.chairs = [];
+        this.customers = [];
     }
     Table.prototype.getNumberOfChairs = function () {
         return this.chairs.length;
@@ -22,6 +23,30 @@ var Table = /** @class */ (function () {
         if (this.chairs.length < 5) {
             this.chairs = this.chairs.concat(chairs);
         }
+        else {
+            return "Cannot add chair! Max 4";
+        }
+    };
+    Table.prototype.findFreeChair = function () {
+        for (var _i = 0, _a = this.chairs; _i < _a.length; _i++) {
+            var chair = _a[_i];
+            if (!chair.hasCustomer()) {
+                return true;
+            }
+        }
+        return false;
+    };
+    Table.prototype.addCustomerFromEachChairToTable = function () {
+        var customer;
+        for (var i = 0; i < this.chairs.length; i++) {
+            if (this.chairs[i].hasCustomer()) {
+                customer = this.chairs[i].getCustomer();
+                this.customers.push(customer);
+            }
+        }
+    };
+    Table.prototype.getNumberCustomer = function () {
+        return this.customers.length;
     };
     return Table;
 }());
